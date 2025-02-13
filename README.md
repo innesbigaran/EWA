@@ -2,4 +2,4 @@
 (Using dev version for merging in MG5@NLO 3.6.2)
 
 Contains scripts for running each set of data in MG5
-Contains run cards for each process output used in paper. 
+Contains run cards for each process output used in 2502.07878. 
