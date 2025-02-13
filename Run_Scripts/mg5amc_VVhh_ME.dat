@@ -1,0 +1,31 @@
+
+# Innes Bigaran Feb 12 2025
+# For generating the full ME for e+ mu- > ve~ vm h h
+# 5 TeV COM
+
+
+set group_subprocesses false
+set gauge Feynman
+
+define vap = w+ #z a
+define vam = w- #z a
+define vxp = w+ #z
+define vxm = w- #z
+
+#################
+##### FULL ME ###
+#################
+
+generate e+ mu- > ve~ vm h h
+output EVAnlp_emu_hh_FullME_5TeV
+launch EVAnlp_emu_hh_FullME_5TeV
+set no_parton_cut
+set ebeam 2500 # 5TeV COM
+set nevents 400k
+set event_norm sum
+
+set run_tag FullME_hh
+set use_syst false
+done
+
+

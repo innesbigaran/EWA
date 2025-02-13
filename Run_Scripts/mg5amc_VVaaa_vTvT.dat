@@ -1,0 +1,62 @@
+# Innes Bigaran Feb 12 2025
+# For generating the WT WT collision WTWT > a a a using EWA at LLA, LP, NLP
+# 5TeV COM and muf of 450GeV 
+
+
+set group_subprocesses false
+set gauge Feynman
+
+
+define vap = w+ #z a
+define vam = w- #z a
+define vxp = w+ #z
+define vxm = w- #z
+
+generate vap{T} vam{T}  > a a a QED=3 QCD=0
+output EVA_vTvT_aaa_5TeV
+
+
+####################
+##### vTvT (1/4) ###
+####################
+
+launch EVA_vTvT_aaa_5TeV
+analysis=off
+set no_parton_cut
+set ebeam 2500
+set nevents  400k
+
+set lpp1  -3
+set lpp2   4
+set pdlabel eva
+set evaorder 0
+
+set fixed_ren_scale true
+set fixed_fac_scale1 true
+set fixed_fac_scale2 true
+set dsqrt_q2fact1 450.0 					# muF for both of these beams
+set dsqrt_q2fact2 450.0 
+
+set run_tag EVA_vTvT_aaa_5TeV_LLA
+set ievo_eva 0 # (0=q^2 or 1=pT^2)
+set use_syst true
+set pt_min_pdg {22:150}
+set eta_max_pdg {22:3}
+set draa 0.4
+set event_norm sum 
+
+
+done
+
+launch EVA_vTvT_aaa_5TeV
+analysis=off 
+set evaorder 1 
+set run_tag EVA_vTvT_aaa_5TeV_LP
+done
+
+launch EVA_vTvT_aaa_5TeV
+analysis=off 
+set evaorder 2
+set run_tag EVA_vTvT_aaa_5TeV_NLP
+done
+

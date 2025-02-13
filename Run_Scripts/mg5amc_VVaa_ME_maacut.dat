@@ -1,0 +1,38 @@
+# Innes Bigaran Feb 12 2025
+# For generating the full ME for e+ mu- > ve~ vm a a 
+# 5 TeV COM, and min M(a,a) 1100 GeV for use with brem. correction to NLP EWA
+
+
+set group_subprocesses false
+set gauge Feynman
+
+define vap = w+ #z a
+define vam = w- #z a
+define vxp = w+ #z
+define vxm = w- #z
+
+
+
+#################
+##### FULL ME ###
+#################
+
+generate e+ mu- > ve~ vm a a 
+output EVAnlp_emu_aa_FullME_5TeV_maacut
+launch EVAnlp_emu_aa_FullME_5TeV_maacut
+analysis=off
+
+set iseed 60610
+set sde_strategy 2
+
+set ebeam 2500
+set nevents 400k 
+set run_tag FullME_aa_maacut_5TeV
+set use_syst false
+set pt_min_pdg {22:150}
+set eta_max_pdg {22:3}
+set draa 0.4 
+set mxx_min_pdg {22:1100} # additional cut on M(a, a)
+set event_norm sum 
+
+done

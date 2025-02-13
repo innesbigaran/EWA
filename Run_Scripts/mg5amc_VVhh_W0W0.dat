@@ -1,0 +1,73 @@
+# Innes Bigaran Feb 12 2025
+# For generating the W0W0 collision W0W0  > h h using EWA at LLA, LP, NLP
+# 5TeV COM and muf of 250GeV 
+
+
+set group_subprocesses false
+set gauge Feynman
+
+define vap = w+ #z a
+define vam = w- #z a
+define vxp = w+ #z
+define vxm = w- #z
+
+
+generate vxp{0} vxm{0} > h h QED=2 QCD=0
+output EVA_w0w0_hh_5TeV_muf250
+
+#########
+# other polarisation combination options.  
+#########
+
+#generate vap vam > h h QED=2 QCD=0
+#output EVA_vxvx_hh_5TeV_muf250
+
+#generate vap{T} vam{T} > h h QED=2 QCD=0
+#output EVA_vTvT_hh_5TeV_muf250
+
+#generate    vxp{0} vam{T} > h h QED=2 QCD=0
+#add process vap{T} vxm{0} > h h QED=2 QCD=0
+#output EVA_v0vT_hh_5TeV_muf250
+
+
+####################
+##### w0w0 ###
+####################
+
+launch EVA_w0w0_hh_5TeV_muf250
+analysis=off
+set no_parton_cut
+set ebeam 2500 # 5TeV COM
+set nevents 400k
+set event_norm sum
+
+set lpp1  -3
+set lpp2   4
+set pdlabel eva 
+set evaorder 0
+
+set fixed_ren_scale true
+set fixed_fac_scale1 true
+set fixed_fac_scale2 true
+set dsqrt_q2fact1 250.0 	# muF for both of these beams,				
+set dsqrt_q2fact2 250.0
+
+set run_tag EVA_w0w0_hh_5TeV_muf250_LLA
+set ievo_eva 0 # (0=q^2 or 1=pT^2)
+set use_syst true
+
+
+done
+
+launch EVA_w0w0_hh_5TeV_muf250
+analysis=off 
+set evaorder 1 
+set run_tag EVA_w0w0_hh_5TeV_muf250_LP
+done
+
+launch EVA_w0w0_hh_5TeV_muf250
+analysis=off 
+set evaorder 2
+set run_tag EVA_w0w0_hh_5TeV_muf250_NLP
+done
+
